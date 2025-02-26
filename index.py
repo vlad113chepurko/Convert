@@ -1,3 +1,10 @@
+import tkinter as tk
+from tkinter import *
+
+root = tk.Tk()
+root.title("Convertor")
+root.geometry("400x400")
+
 class Convert:
     def __init__(self, value, choice):
         self.value = value
@@ -24,3 +31,5 @@ class Convert:
 value = int(input("Enter the value you want to convert: "))
 convert = Convert(value, 1)
 print(convert.logic())
+
+root.mainloop()
