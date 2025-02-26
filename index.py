@@ -5,6 +5,8 @@ root = tk.Tk()
 root.title("Converter")
 root.geometry("400x400")
 
+root.configure(bg="white")
+
 class Convert:
     def __init__(self, value):
         self.value = value
@@ -16,37 +18,25 @@ class Convert:
         label_1 = Label(root, text="You can convert the value to other types")
         label_1.pack()
 
-        label_2 = Label(root, text="Choose the type you want to convert to: ")
-        label_2.pack()
+        listbox = Listbox(root)
+        listbox.pack()
 
-        label_3 = Label(root, text="1. Binary")
-        label_3.pack()
-        label_4 = Label(root, text="2. Octal")
-        label_4.pack()
-        label_5 = Label(root, text="3. Hexadecimal")
-        label_5.pack()
+        list = ['Binary', 'Octal', 'Hexadecimal']
+        for item in list:
+            listbox.insert(END, item)
 
-        choise = Entry(root, width=50)
-        choise.pack()
-
-        submit = Button(root, text="Submit", command=lambda: self.choise_user(int(choise.get())))
-        submit.pack()
-
-    def choise_user(self, choise):
-        result_label = Label(root, text="")
-        result_label.pack()
-
-        if choise == 1:
-            result = self.convert_to_binary()
-            result_label.config(text=f"Binary: {result}")
-        elif choise == 2:
-            result = self.convert_to_octal()
-            result_label.config(text=f"Octal: {result}")
-        elif choise == 3:
-            result = self.convert_to_hexadecimal()
-            result_label.config(text=f"Hexadecimal: {result}")
-        else:
-            result_label.config(text="Invalid")
+        button_for_listbox = Button(root, text="Submit", command=lambda: self.convert(listbox.get(listbox.curselection()))) 
+        button_for_listbox.pack()
+    def convert(self, value):
+        if value == "Binary":
+            label = Label(root, text=self.convert_to_binary())
+            label.pack()
+        elif value == "Octal":
+            label = Label(root, text=self.convert_to_octal())
+            label.pack()
+        elif value == "Hexadecimal":
+            label = Label(root, text=self.convert_to_hexadecimal())
+            label.pack()
 
     def convert_to_binary(self):
         return bin(self.value)
@@ -63,14 +53,16 @@ def command_convert():
     convert.logic()
 
 value = 0
-label_enter_value = Label(root, text="Enter the value you want to convert: ")
-label_enter_value.pack()
 
-button_light_theme = Button(root, text="Light Theme", command=lambda: root.configure(bg="white"))
+button_light_theme = Button(root, text="Light Theme", bg='pink', command=lambda: root.configure(bg="white"))
 button_light_theme.pack()
 
-button_dark_theme = Button(root, text="Dark Theme", command=lambda: root.configure(bg="#3d3d3d"))
+button_dark_theme = Button(root, text="Dark Theme", bg='pink', command=lambda: root.configure(bg="#3d3d3d"))
 button_dark_theme.pack()
+
+label_enter_value = Label(root, text="Enter the value you want to convert: ", font=("Arial", 12))
+label_enter_value.pack()
+
 
 input = Entry(root, width=50)
 input.pack()
