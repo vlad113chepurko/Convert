@@ -14,6 +14,8 @@ class Convert:
       return self.convert_to_binary()
     elif(self.choise == 2):
       return self.convert_to_octal()
+    elif(self.choise == 3):
+      return self.convert_to_hexadecimal()
 
 
   def convert_to_binary(self):
@@ -21,6 +23,9 @@ class Convert:
   
   def convert_to_octal(self):
     return oct(self.value)
+  
+  def convert_to_hexadecimal(self):
+    return hex(self.value)
 
 value = int(input("Enter the value you want to convert: "))
 convert = Convert(value, 1)
