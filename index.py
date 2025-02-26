@@ -66,6 +66,12 @@ value = 0
 label_enter_value = Label(root, text="Enter the value you want to convert: ")
 label_enter_value.pack()
 
+button_light_theme = Button(root, text="Light Theme", command=lambda: root.configure(bg="white"))
+button_light_theme.pack()
+
+button_dark_theme = Button(root, text="Dark Theme", command=lambda: root.configure(bg="#3d3d3d"))
+button_dark_theme.pack()
+
 input = Entry(root, width=50)
 input.pack()
 
